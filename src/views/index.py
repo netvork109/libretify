@@ -26,6 +26,7 @@ from flask_admin import (
 )
 from flask_login import current_user
 
+# This is main index page of the admin panel
 class View(AdminIndexView):
     @expose('/')
     def index(self):

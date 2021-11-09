@@ -21,16 +21,24 @@ from flask import Flask
 from src.database import db
 from src.admin import admin
 from src.login import login
+from flask_bootstrap import Bootstrap
+
+import json
 
 class Application:
     def __init__(self) -> None:
         self.app = Flask(__name__)
     
     def setup(self) -> None:
-        # Adding a services
+        # Setup a configuration from JSON file
+        self.app.config.from_file('../configuration.json', json.load)
+        self.app.secret_key = self.app.config.get('SECRET_KEY')
+
+        # Adding a libraries to application
         db.init_app(self.app)
         admin.init_app(self.app)
         login.init_app(self.app)
+        self.bootstrap = Bootstrap(self.app)
 
     def run(self) -> None:
         self.app.run()

@@ -17,6 +17,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from flask_admin import Admin
+from src.views import IndexView
 
 # Creating the Admin interface
-admin = Admin()
+admin = Admin(
+    index_view=IndexView() # Custom page with authorization check
+)

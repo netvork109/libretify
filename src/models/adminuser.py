@@ -16,4 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from src.views.index import View as IndexView
+from src.database import db
+
+class Model(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    
+    nickname = db.Column(db.String(255))
+    password = db.Column(db.String(255))

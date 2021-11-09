@@ -16,4 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from src.views.index import View as IndexView
+from flask import (
+    abort, 
+    request
+)
+from flask_admin import (
+    AdminIndexView,
+    expose
+)
+from flask_login import current_user
+
+class View(AdminIndexView):
+    @expose('/')
+    def index(self):
+        if not current_user.is_authenticated:
+            return abort(401)

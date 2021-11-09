@@ -17,6 +17,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from flask_login import LoginManager
+from src.models import AdminUser
 
 # Creating the Login manager
 login = LoginManager()
+
+# user_loader needs for admin panel user authentication
+@login.user_loader
+def user_loader(user_id):
+    # Getting a user from the database using model
+    return AdminUser.query.get(user_id)

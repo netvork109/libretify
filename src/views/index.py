@@ -30,5 +30,5 @@ from flask_login import current_user
 class View(AdminIndexView):
     @expose('/')
     def index(self):
-        if not current_user.is_authenticated:
+        if not current_user.is_authenticated or not current_user.is_admin:
             return abort(401)

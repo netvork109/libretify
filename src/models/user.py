@@ -17,9 +17,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from src.database import db
+from datetime import datetime
 
+# This is model of user
 class Model(db.Model):
+    # Common data
     id = db.Column(db.Integer, primary_key=True)
     
     nickname = db.Column(db.String(255))
     password = db.Column(db.String(255))
+
+    created_at = db.Column(db.DateTime, default=datetime.now())
+    modified_at = db.Column(db.DateTime, default=datetime.now())
+
+    # Settings
+    always_proxy = db.Column(db.Boolean, default=True)
+    autoplay = db.Column(db.Boolean, default=True)
+
+    language = db.Column(db.String(8), default='en-US')
+    country = db.Column(db.String(8), default='US')
